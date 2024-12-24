@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+  @apply inline-block px-8 py-4 text-base font-medium text-white border-none rounded-full cursor-pointer relative overflow-hidden;
+  text-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.75);
+  background: linear-gradient(135deg, #6a00f4, #320d6d, #007cf4, #ff2281);
+  background-size: 300% 300%;
+  transition: transform 0.3s ease;
+  animation: gradientShift 5s infinite;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: blobMove 6s infinite;
+}
+
+.btn:hover::before {
+  opacity: 1;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes blobMove {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-40%, -60%) scale(1.2); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
